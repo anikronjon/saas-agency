@@ -6,10 +6,20 @@
 </head>
 <body>
     <h2>This is SignIN form</h2>
+    {% if messages %}
+        {% for message in messages %}
+            <p>{{ message }}</p>        
+        {% endfor %}
+    {% endif %}
     <form method="post">
         {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="Submit">
+        <label for="username">Username or Email</label>
+        <input type="text" id="username" name="username" required>
+        <br>
+        <label for="password">Password</label>
+        <input type="text" id="password" name="password" required>
+        <br>
+        <input type="submit" value="Sign In">
     </form>
 </body>
 </html>
