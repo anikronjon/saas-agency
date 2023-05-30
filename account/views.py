@@ -39,6 +39,7 @@ def signin_view(request):
 @login_required(login_url='account:signin')
 def profile_view(request):
     user = request.user
+    profile = Profile.objects.filter(user__exact=user)
 
     if request.method == 'POST':
         # Handle password change form
@@ -50,17 +51,16 @@ def profile_view(request):
 
         # Handle profile picture upload
         profile_picture = request.FILES.get('picture')
-        if profile_picture:
-            profile_obj = Profile.objects.get(user=user)
-            profile_obj.picture = profile_picture
-            profile_obj.save()
-            messages.success(request, 'Profile picture upload.')
-            return redirect('account:profile')
+        if profile:
+            profile.picture = profile_picture
+            profile.save()
+        else:
+            profile = Profile(user=user, picture=profile_picture)
+            profile.save()
+        messages.success(request, 'Profile picture updated.')
+        return redirect('account:profile')
     else:
         password_form = PasswordChangeForm(user=user)
 
-    context = {
-        'user': user,
-        'password_form': password_form
-    }
-    return render(request, 'account/profile.html', context=context)
+    return render(request, 'account/profile.html', {'user': user, 'profile': profile, 'password_form': password_form})
+
