@@ -9,6 +9,7 @@
 </head>
 <body>
     <h2>Create a User Account</h2>
+    <p>Already has an account span <a href="{% url 'account:signin' %}">Sign In</a></p>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}

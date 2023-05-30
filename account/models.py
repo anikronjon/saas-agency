@@ -10,3 +10,10 @@ class User(AbstractUser):
     def __str__(self):
         return self.username
     
+
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    picture = models.ImageField(upload_to='images/profile')
+
+    def __str__(self):
+        return self.user.username

@@ -1,13 +1,15 @@
-from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import PasswordChangeForm
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth import login
 from django.contrib import messages
+from .models import Profile
 from .forms import SignUpForm
 from .custom_auth_backend import CustomAuthenticationBackend
 
 
-# Registration View
-def signup(request):
+def signup_view(request):
     if request.method == 'POST':
         form = SignUpForm(request.POST)
         if form.is_valid():
@@ -19,7 +21,7 @@ def signup(request):
     return render(request, 'account/signup.html', {'form': form})
 
 
-def signin(request):
+def signin_view(request):
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
@@ -27,8 +29,38 @@ def signin(request):
 
         if user is not None:
             login(request, user)
-            return HttpResponse(f'Login: {request.user}')  # Redirect to the home page after successful login
+            return redirect('account:profile')  # Redirect to the home page after successful login
         else:
             messages.error(request, 'Invalid username/email or password.')
 
     return render(request, 'account/signin.html')
+
+
+@login_required(login_url='account:signin')
+def profile_view(request):
+    user = request.user
+
+    if request.method == 'POST':
+        # Handle password change form
+        password_form = PasswordChangeForm(user=user, data=request.POST)
+        if password_form.is_valid():
+            password_form.save()
+            messages.success(request, 'Your password has been updated')
+            return redirect('account:profile')
+
+        # Handle profile picture upload
+        profile_picture = request.FILES.get('picture')
+        if profile_picture:
+            profile_obj = Profile.objects.get(user=user)
+            profile_obj.picture = profile_picture
+            profile_obj.save()
+            messages.success(request, 'Profile picture upload.')
+            return redirect('account:profile')
+    else:
+        password_form = PasswordChangeForm(user=user)
+
+    context = {
+        'user': user,
+        'password_form': password_form
+    }
+    return render(request, 'account/profile.html', context=context)
