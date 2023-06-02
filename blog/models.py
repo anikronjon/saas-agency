@@ -1,9 +1,10 @@
 from django.contrib.contenttypes.fields import GenericForeignKey, GenericRelation
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
-from account.models import User
+from django.urls import reverse
 from django.utils.text import slugify
 from django.contrib.auth import get_user_model
+User = get_user_model()
 
 
 class Category(models.Model):
@@ -33,7 +34,7 @@ class Post(models.Model):
     content = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    tags = models.ManyToManyField(Tag)
+    tags = models.ManyToManyField(Tag, blank=True)
     likes = GenericRelation('Like')
     comments = GenericRelation('Comment')
     ratings = GenericRelation('Rating')
@@ -47,11 +48,11 @@ class Post(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        pass
+        return reverse('blog:post_detail', args=[self.slug])
 
 
 class Like(models.Model):
-    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
     object_id = models.PositiveIntegerField()
     content_object = GenericForeignKey('content_type', 'object_id')
@@ -62,7 +63,7 @@ class Like(models.Model):
 
 
 class Comment(models.Model):
-    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
     object_id = models.PositiveIntegerField()
     content_object = GenericForeignKey('content_type', 'object_id')
@@ -83,7 +84,7 @@ class Rating(models.Model):
         (5, '5 Stars'),
     )
     value = models.IntegerField(choices=VALUE_CHOICES)
-    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
     object_id = models.PositiveIntegerField()
     content_object = GenericForeignKey('content_type', 'object_id')

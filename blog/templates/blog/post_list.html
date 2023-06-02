@@ -1,0 +1,15 @@
+{% extends 'blog/_base.html' %}
+
+{% block title %}TourGuide Blog{% endblock %}
+
+{% block container %}
+<div class="container">
+    <h1>Welcome to our Blog Site</h1>
+    {% for post in posts %}
+        <h2>{{ post.title }}</h2>
+        <p>{{ post.content | truncatechars:150 }}</p>
+        <a href="{{ post.get_absolute_url }}">Read more</a>
+    {% endfor %}
+
+</div>
+{% endblock %}

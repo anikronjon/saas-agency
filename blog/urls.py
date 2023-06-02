@@ -5,5 +5,8 @@ from . import views
 app_name = 'blog'
 urlpatterns = [
     path('', views.post_list_detail, name='post_list'),
-    path('', views.post_list_detail, name='post_detail'),
+    path('<slug:slug>/', views.post_list_detail, name='post_detail'),
+    path('<slug:slug>/like/', views.like_post, name='like_post'),
+    path('<slug:slug>/comment/', views.comment_post, name='comment_post'),
+    path('<slug:slug>/rate/', views.rating_view, name='rate_post'),
 ]
