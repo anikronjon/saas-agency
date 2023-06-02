@@ -8,4 +8,25 @@
     <p>Published by {{ post.author | title }} in {{ post.updated_at }}</p>
     <p>{{ post.content }}</p>
 </div>
+
+<div class="like">
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Like the content ❤️</button>
+    </form>
+</div>
+    <br>
+<div class="comment">
+    <div class="commentView">
+        {% for comment in comments %}
+            {{ comments }}
+        {% endfor %}
+
+    </div>
+    <form method="post">
+        {% csrf_token %}
+        <textarea name="comment_content" cols="30" rows="10"></textarea>
+        <button type="submit">Comment</button>
+    </form>
+</div>
 {% endblock %}
