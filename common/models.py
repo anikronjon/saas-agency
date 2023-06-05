@@ -8,7 +8,7 @@ User = get_user_model()
 
 
 class Like(models.Model):
-    content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
+    content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE, related_name='likes')
     object_id = models.PositiveIntegerField()
     content_object = GenericForeignKey('content_type', 'object_id')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -19,7 +19,7 @@ class Like(models.Model):
 
 
 class Comment(models.Model):
-    content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
+    content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE, related_name='comments')
     object_id = models.PositiveIntegerField()
     content_object = GenericForeignKey('content_type', 'object_id')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -39,7 +39,7 @@ class Rating(models.Model):
         (4, '4 Stars'),
         (5, '5 Stars'),
     )
-    content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
+    content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE, related_name='ratings')
     object_id = models.PositiveIntegerField()
     content_object = GenericForeignKey('content_type', 'object_id')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
