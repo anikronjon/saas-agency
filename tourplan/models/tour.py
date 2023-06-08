@@ -1,5 +1,7 @@
 from django.db import models
 from django.utils.text import slugify
+from .address import Location
+from common.validator import image_size_validation, video_size_validation
 
 
 class Category(models.Model):
@@ -9,6 +11,7 @@ class Category(models.Model):
 
 class TourPlace(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='+')
+    address = models.ForeignKey(Location, on_delete=models.DO_NOTHING, related_name='tourplaces')
     name = models.CharField(max_length=120)
     slug = models.SlugField(max_length=120, unique=True)
     short_description = models.CharField(max_length=200)
@@ -26,10 +29,9 @@ class TourPlace(models.Model):
 
 class Image(models.Model):
     tour = models.ForeignKey(TourPlace, on_delete=models.CASCADE, related_name='images')
-    image = models.ImageField(upload_to='images/tour', validators=[])
+    image = models.ImageField(upload_to='images/tour', validators=[image_size_validation(1)])
 
 
 class Video(models.Model):
     tour = models.ForeignKey(TourPlace, on_delete=models.CASCADE, related_name='videos')
-    video = models.FileField(upload_to='videos/tour', validators=[])
-
+    video = models.FileField(upload_to='videos/tour', validators=[video_size_validation(5)])
