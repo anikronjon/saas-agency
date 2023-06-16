@@ -1,0 +1,23 @@
+{% extends 'blog/_base.html' %}
+
+{% block title %}{{ post.title }}{% endblock %}
+
+{% block container %}
+    <div>
+    {{ post.title }}
+    <p>Created by {{ post.author | title }} in {{ post.created_at }}</p>
+    <p>{{ post.content }}</p>
+    </div>
+
+    <div class="form">
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+    {% for comment in comments %}
+        <li>{{ comment }}{{ comment.content }}</li>
+    {% endfor %}
+
+{% endblock %}
