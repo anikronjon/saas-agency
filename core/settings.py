@@ -1,6 +1,9 @@
 from pathlib import Path
+from decouple import config
 from django.core.management.utils import get_random_secret_key
 
+
+# AVNS_ByWfH2pCFQwEinYrMgD
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -67,8 +70,14 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # Database
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        # 'ENGINE': 'django.db.backends.sqlite3',
+        # 'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': config('DB_NAME', default='defaultdb'),
+        'USER': config('DB_USER', default='doadmin'),
+        'PASSWORD': config('DB_PASSWORD'),
+        'HOST': config('DB_HOST', default='db-postgresql-nyc1-95564-do-user-11919912-0.b.db.ondigitalocean.com'),
+        'PORT': config('DB_PORT', default=25060, cast=int),
     }
 }
 

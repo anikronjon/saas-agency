@@ -1,7 +1,6 @@
 from django.db import models
 from django.utils.text import slugify
 from .address import Location
-from common.validator import image_size_validation, video_size_validation
 
 
 class Category(models.Model):
@@ -27,11 +26,4 @@ class TourPlace(models.Model):
         return self.name
 
 
-class Image(models.Model):
-    tour = models.ForeignKey(TourPlace, on_delete=models.CASCADE, related_name='images')
-    image = models.ImageField(upload_to='images/tour', validators=[image_size_validation(1)])
 
-
-class Video(models.Model):
-    tour = models.ForeignKey(TourPlace, on_delete=models.CASCADE, related_name='videos')
-    video = models.FileField(upload_to='videos/tour', validators=[video_size_validation(5)])
