@@ -15,7 +15,7 @@ def signup_view(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
-            return HttpResponse('You signup successfully.')
+            return redirect('account:signin')
     else:
         form = SignUpForm()
     return render(request, 'account/signup.html', {'form': form})
