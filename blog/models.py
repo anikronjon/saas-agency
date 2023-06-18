@@ -9,8 +9,6 @@ User = get_user_model()
 
 class Category(models.Model):
     name = models.CharField(max_length=12, unique=True)
-    parent = models.ForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='children')
-
     def __str__(self):
         return self.name
 
@@ -27,7 +25,7 @@ class Post(models.Model):
         DRAFT = 'draft', 'Draft'
         PUBLISHED = 'pub', 'Published'
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='posts')
-    categories = models.ManyToManyField(Category)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='posts')
     title = models.CharField(max_length=200)
     slug = models.SlugField(unique=True)
     published = models.CharField(max_length=5, choices=PublicationStatus.choices, default=PublicationStatus.DRAFT)
@@ -35,6 +33,7 @@ class Post(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     tags = models.ManyToManyField(Tag, blank=True)
+    image = models.ImageField(upload_to='images/blog/')
     likes = GenericRelation('Like')
     comments = GenericRelation('Comment')
     ratings = GenericRelation('Rating')

@@ -1,15 +1,13 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>{% block title %}Blog{% endblock %}</title>
-</head>
-<body>
-    {% block container %}
+{% extends '_base.html' %}
 
-    {% endblock %}
-</body>
-</html>
+{% block container %}
+    <main class="page-wrapper">
+    {% include 'navbar.html' %}
+        {% if not user.is_authenticated %}
+            {% include 'navbar.html' %}
+        {% else %}
+            {% include 'navbar_in_logged_state.html' %}
+        {% endif %}
+    </main>
+    {% include 'footer.html' %}
+{% endblock %}

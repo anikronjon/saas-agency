@@ -1,11 +1,15 @@
 from django.contrib import admin
-from .models import Category, Post
+from .models import Category, Post, Tag
 
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ('name', 'parent')
-    list_filter = ('parent',)
+    list_display = ('name',)
+
+
+@admin.register(Tag)
+class TagAdmin(admin.ModelAdmin):
+    list_display = ('name',)
 
 
 @admin.register(Post)
@@ -15,3 +19,4 @@ class PostAdmin(admin.ModelAdmin):
     search_fields = ('title', 'author__username')
     prepopulated_fields = {'slug': ('title',)}
     list_editable = ('published',)
+

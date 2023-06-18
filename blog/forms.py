@@ -5,7 +5,7 @@ from .models import Category, Tag, Post, Comment, Rating
 class CategoryForm(forms.ModelForm):
     class Meta:
         model = Category
-        fields = ('name', 'parent')
+        fields = ('name',)
 
 
 class TagForm(forms.ModelForm):
@@ -17,7 +17,7 @@ class TagForm(forms.ModelForm):
 class PostForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = ('title', 'content', 'published', 'categories', 'tags')
+        fields = ('title', 'content', 'published', 'category', 'tags')
 
 
 class CommentForm(forms.ModelForm):
