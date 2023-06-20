@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     'tourplan.apps.TourplanConfig',
     'game.apps.GameConfig',
     'chat.apps.ChatConfig',
+    'storages',
 ]
 
 AUTH_USER_MODEL = 'account.User'
@@ -119,3 +120,8 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# Configure media file storage
+DEFAULT_FILE_STORAGE = 'storages.backends.do_spaces.DoSpacesStorage',
+DO_SPACES_ACCESS_KEY_ID = ''
