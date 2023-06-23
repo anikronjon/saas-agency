@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from tourplan.models import *
 
 
-def home_page(request):
+def home_view(request):
     tourplans = TourPlace.objects.all().order_by('-id')[:5]
     hotels = Hotel.objects.all().order_by('-id')[:5]
     agencies = Agency.objects.all().order_by('-id')[:5]
