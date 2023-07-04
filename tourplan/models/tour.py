@@ -7,6 +7,10 @@ class Category(models.Model):
     parent = models.ForeignKey('self', on_delete=models.CASCADE, blank=True, null=True, related_name='children')
     name = models.CharField(max_length=20, unique=True)
 
+    def __str__(self):
+        return self.name
+
+
 
 class TourPlace(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='+')
@@ -14,7 +18,7 @@ class TourPlace(models.Model):
     name = models.CharField(max_length=120)
     slug = models.SlugField(max_length=120, unique=True)
     short_description = models.CharField(max_length=200)
-    long_description = models.TextField
+    long_description = models.TextField()
     cover_photo = models.ImageField(upload_to='cover/', validators=[])
 
     def save(self, *args, **kwargs):

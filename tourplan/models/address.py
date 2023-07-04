@@ -11,7 +11,7 @@ class Location(models.Model):
         RAJSHAHI = 'RJS', 'Rajshahi'
         RANGPUR = 'RGP', 'Rangpur'
         SYLHET = 'SYL', 'Sylhet'
-    division = models.CharField(max_length=20)
+    division = models.CharField(max_length=20, choices=DivisionChoices.choices)
     district = models.CharField(max_length=20)
 
     class Meta:

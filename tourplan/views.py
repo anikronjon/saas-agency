@@ -3,15 +3,16 @@ from tourplan.models import *
 
 
 def home_view(request):
-    tourplans = TourPlace.objects.all().order_by('-id')[:5]
-    hotels = Hotel.objects.all().order_by('-id')[:5]
-    agencies = Agency.objects.all().order_by('-id')[:5]
-    restaurants = Restaurant.objects.all().order_by('-id')[:5]
+    tourplans = TourPlace.objects.all().order_by('-id')[:3]
+    hotels = Hotel.objects.all().order_by('-id')[:3]
+    agencies = Agency.objects.all().order_by('-id')[:3]
+    restaurants = Restaurant.objects.all().order_by('-id')[:3]
     context = {
         'tourplans': tourplans,
         'hotels': hotels,
         'agencies': agencies,
         'restaurants': restaurants,
+        'user': request.user
     }
     return render(request, 'tourplan/home.html', context=context)
 
