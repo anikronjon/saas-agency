@@ -2,12 +2,7 @@
 
 {% block container %}
     <main class="page-wrapper">
-    {% include 'navbar.html' %}
-        {% if not user.is_authenticated %}
-            {% include 'navbar.html' %}
-        {% else %}
-            {% include 'navbar_in_logged_state.html' %}
-        {% endif %}
+
     </main>
     {% include 'footer.html' %}
 {% endblock %}

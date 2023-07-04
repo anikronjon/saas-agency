@@ -5,8 +5,12 @@
 
 {% block container %}
     <main class="page-wrapper">
+    {% if request.user.is_authentiated %}
+        {% include 'navbar_in_logged_state.html' %}
+    {% else %}
         {% include 'navbar.html' %}
-{#            {% include 'tourplan/card/agency.html' %}#}
+    {% endif %}
+
         {% include 'footer.html' %}
     </main>
 {% endblock %}

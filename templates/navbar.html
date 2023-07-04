@@ -1,9 +1,8 @@
 {% load static %}
 <header class="navbar navbar-expand-lg bg-light shadow-sm">
     <div class="container">
-        <a href="#" class="navbar-brand">
-            <img src="assets/img/logo.svg" width="47" alt="Silicon">
-            Silicon
+        <a href="{% url 'tourplan:home_page' %}" class="navbar-brand">
+            TourGuide
         </a>
         <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse2"
                 aria-expanded="false">
@@ -14,7 +13,7 @@
             <label class="form-check-label d-none d-sm-block d-lg-none d-xl-block" for="theme-mode">Light</label>
             <label class="form-check-label d-none d-sm-block d-lg-none d-xl-block" for="theme-mode">Dark</label>
         </div>
-        <a href="#" class="btn btn-secondary btn-sm fs-sm rounded order-lg-3 d-none d-lg-inline-flex">
+        <a href="{% url 'account:signin' %}" class="btn btn-secondary btn-sm fs-sm rounded order-lg-3 d-none d-lg-inline-flex">
             <i class="bx bx-log-in fs-lg me-2"></i>
             Sign in
         </a>
@@ -22,16 +21,16 @@
             <hr class="d-lg-none mt-3 mb-2">
             <ul class="navbar-nav me-auto">
                 <li class="nav-item">
-                    <a href="#" class="nav-link active">Home</a>
+                    <a href="{% url 'tourplan:home_page' %}" class="nav-link">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">Services</a>
+                    <a href="{% url 'blog:post_list' %}" class="nav-link">Blog</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">About</a>
+                    <a href="#" class="nav-link">Game</a>
                 </li>
             </ul>
-            <a href="#" class="btn btn-secondary btn-sm fs-sm rounded my-3 d-lg-none">
+            <a href="{% url 'account:signin' %}" class="btn btn-secondary btn-sm fs-sm rounded my-3 d-lg-none">
                 <i class="bx bx-log-in fs-lg me-2"></i>
                 Sign in
             </a>
