@@ -2,10 +2,11 @@ from django.db import models
 
 
 class Agency(models.Model):
-    name = models.CharField()
+    name = models.CharField(max_length=120)
     details = models.TextField()
-    web_link = models.URLField()
+    weblink = models.URLField()
     rating = models.IntegerField()
+    image = models.ImageField(upload_to='agency/')
 
     def __str__(self):
         return self.name

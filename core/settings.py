@@ -1,5 +1,4 @@
 from pathlib import Path
-from decouple import config
 from django.core.management.utils import get_random_secret_key
 
 
@@ -31,7 +30,6 @@ INSTALLED_APPS = [
     'tourplan.apps.TourplanConfig',
     'game.apps.GameConfig',
     'chat.apps.ChatConfig',
-    'storages',
 ]
 
 AUTH_USER_MODEL = 'account.User'
@@ -71,14 +69,14 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # Database
 DATABASES = {
     'default': {
-        # 'ENGINE': 'django.db.backends.sqlite3',
-        # 'NAME': BASE_DIR / 'db.sqlite3',
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': config('DB_NAME', default='defaultdb'),
-        'USER': config('DB_USER', default='doadmin'),
-        'PASSWORD': config('DB_PASSWORD'),
-        'HOST': config('DB_HOST', default='db-postgresql-nyc1-95564-do-user-11919912-0.b.db.ondigitalocean.com'),
-        'PORT': config('DB_PORT', default=25060, cast=int),
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+        # 'ENGINE': 'django.db.backends.postgresql',
+        # 'NAME': config('DB_NAME', default='defaultdb'),
+        # 'USER': config('DB_USER', default='doadmin'),
+        # 'PASSWORD': config('DB_PASSWORD'),
+        # 'HOST': config('DB_HOST', default='db-postgresql-nyc1-95564-do-user-11919912-0.b.db.ondigitalocean.com'),
+        # 'PORT': config('DB_PORT', default=25060, cast=int),
     }
 }
 
@@ -122,6 +120,3 @@ MEDIA_ROOT = BASE_DIR / 'media'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-# Configure media file storage
-DEFAULT_FILE_STORAGE = 'storages.backends.do_spaces.DoSpacesStorage',
-DO_SPACES_ACCESS_KEY_ID = ''

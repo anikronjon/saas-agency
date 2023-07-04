@@ -16,6 +16,7 @@ class Restaurant(models.Model):
     weblink = models.URLField(blank=True, null=True)
     description = models.CharField(max_length=120)
     rating = models.IntegerField(choices=RATING_CHOICES)
+    image = models.ImageField(upload_to='restaurants/')
 
     def __str__(self):
         return self.name
