@@ -3,7 +3,11 @@
 {% block title %}{{ post.title }}{% endblock %}
 
 {% block container %}
-    {% include 'navbar.html' %}
+    {% if not user.is_authenticated %}
+        {% include 'navbar.html' %}
+    {% else %}
+        {% include 'navbar_in_logged_state.html' %}
+    {% endif %}
     <!-- Post title + Meta  -->
     <section class="container mt-4 pt-lg-2 pb-3">
         <h1 class="pb-3" style="max-width: 970px;">{{ post.title }}</h1>

@@ -2,6 +2,11 @@
 
 
 {% block container %}
+    {% if not user.is_authenticated %}
+        {% include 'navbar.html' %}
+    {% else %}
+        {% include 'navbar_in_logged_state.html' %}
+    {% endif %}
     <script>
         document.getElementById('upload-button').addEventListener('click', function () {
             document.getElementById('picture-input').click();

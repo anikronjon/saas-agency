@@ -5,17 +5,19 @@
 {% block container %}
     <main class="page-wrapper">
         <div class="container">
-            {% if request.user.is_authentiated %}
-                {% include 'navbar_in_logged_state.html' %}
-            {% else %}
+            {% if not user.is_authenticated %}
                 {% include 'navbar.html' %}
+            {% else %}
+                {% include 'navbar_in_logged_state.html' %}
             {% endif %}
             <!-- Hero Widget -->
             <!-- Tourist places -->
             <h2 class="p-3 mt-5">Popular Tourist places</h2>
             <div class="card-group">
                 <div class="card m-2">
-                    <img class="card-img-top m-auto" style="height: 240px;" src="https://cdn.discordapp.com/attachments/1119601743538425866/1126055581493514280/IMG-20230705-WA0005.jpg" alt="Card image">
+                    <img class="card-img-top m-auto" style="height: 240px;"
+                         src="https://cdn.discordapp.com/attachments/1119601743538425866/1126055581493514280/IMG-20230705-WA0005.jpg"
+                         alt="Card image">
                     <div class="card-body">
                         <h5 class="card-title">See all Places</h5>
                         <p class="card-text fs-sm"></p>
