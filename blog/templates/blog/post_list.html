@@ -9,7 +9,7 @@
             {% include 'navbar_in_logged_state.html' %}
         {% endif %}
     <!-- Breadcrumb -->
-    <nav class="container mt-lg-4 pt-5" aria-label="breadcrumb">
+    <nav class="container" aria-label="breadcrumb">
         <ol class="breadcrumb mb-0 pt-5">
             <li class="breadcrumb-item">
                 <a href="{% url 'blog:post_list' %}"><i class="bx bx-home-alt fs-lg me-1"></i>Home</a>
@@ -31,14 +31,6 @@
                 <div class="row gy-2">
                     <div class="col-lg-5 col-sm-6">
                         <div class="d-flex align-items-center">
-                            <div class="d-flex align-items-center me-sm-4 me-3">
-                                <a href="blog-list-no-sidebar.html" class="nav-link me-2 p-0 active">
-                                    <i class="bx bx-list-ul fs-4"></i>
-                                </a>
-                                <a href="blog-grid-no-sidebar.html" class="nav-link p-0">
-                                    <i class="bx bx-grid-alt fs-4"></i>
-                                </a>
-                            </div>
                             <select class="form-select">
                                 <option>All categories</option>
                                 <option value="processes-and-tools">Processes &amp; Tools</option>
@@ -67,11 +59,6 @@
                          style="background-image: url({{ post.image.url }}); min-height: 15rem;">
                         <a href="{{ post.get_absolute_url }}" class="position-absolute top-0 start-0 w-100 h-100"
                            aria-label="Read more"></a>
-                        <a href="blog-list-no-sidebar.html#"
-                           class="btn btn-icon btn-light bg-white border-white btn-sm rounded-circle position-absolute top-0 end-0 zindex-5 me-3 mt-3"
-                           data-bs-toggle="tooltip" data-bs-placement="left" title="Read later">
-                            <i class="bx bx-bookmark"></i>
-                        </a>
                     </div>
                     <div class="col-sm-8">
                         <div class="card-body">
@@ -85,10 +72,8 @@
                             <p>{{ post.content | truncatechars:150 }}</p>
                             <hr class="my-4">
                             <div class="d-flex align-items-center justify-content-between">
-                                <a href="blog-list-no-sidebar.html#"
-                                   class="d-flex align-items-center fw-bold text-dark text-decoration-none me-3">
-                                    <img src="assets/img/avatar/01.jpg" class="rounded-circle me-3 bg-primary" width="48"
-                                         alt="">
+                                <a class="d-flex align-items-center fw-bold text-dark text-decoration-none me-3">
+                                    <img src="{{ post.author }}" class="rounded-circle me-3 bg-primary" width="48" alt="">
                                     {{ post.author }}
                                 </a>
                                 <div class="d-flex align-items-center text-muted">

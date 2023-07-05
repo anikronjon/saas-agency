@@ -1,7 +1,7 @@
 {% load static %}
 <header class="navbar navbar-expand-lg bg-light shadow-sm">
     <div class="container">
-        <a href="#" class="navbar-brand">
+        <a class="navbar-brand">
             TourGuide
         </a>
         <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse5"
@@ -13,7 +13,7 @@
                 <img  class="rounded-circle" width="48" alt="Avatar">
                 <div class="d-none d-sm-block ps-2">
                     <div class="fs-xs lh-1 opacity-60">Hello,</div>
-                    <div class="fs-sm dropdown-toggle">Alexander</div>
+                    <div class="fs-sm dropdown-toggle">{{ user }}</div>
                 </div>
             </a>
             <ul class="dropdown-menu dropdown-menu-end my-1" style="width: 14rem;">
@@ -45,7 +45,7 @@
             <hr class="d-lg-none mt-3 mb-2">
             <ul class="navbar-nav me-auto">
                 <li class="nav-item">
-                    <a href="{% url 'tourplan:home_page' %}" class="nav-link active">Home</a>
+                    <a href="{% url 'tourplan:home_page' %}" class="nav-link">Home</a>
                 </li>
                 <li class="nav-item">
                     <a href="{% url 'blog:post_list' %}" class="nav-link">Blog</a>
