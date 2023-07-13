@@ -12,60 +12,96 @@
         <div class="container">
             <!-- Hero Widget -->
             <!-- Tourist places -->
-            <h2 class="p-3 mt-5">Popular Tourist places</h2>
-            <div class="card-group">
-                <div class="card m-2">
-                    <img class="card-img-top m-auto" style="height: 240px;"
-                         src="https://cdn.discordapp.com/attachments/1119601743538425866/1126055581493514280/IMG-20230705-WA0005.jpg"
-                         alt="Card image">
-                    <div class="card-body">
-                        <h5 class="card-title">See all Places</h5>
-                        <p class="card-text fs-sm"></p>
-                    </div>
-                </div>
-                {% for tour in tourplans %}
+            <div class="pb-4 mb-4">
+                <h2 class="">Popular Tourist places</h2>
+                <div class="card-group">
                     <div class="card m-2">
-                        <img class="card-img-top m-auto" style="height: 240px;" src="{{ tour.cover_photo.url }}"
+                        <img class="card-img-top m-auto" style="height: 240px;"
+                             src="https://cdn.discordapp.com/attachments/1119601743538425866/1129008897903034438/Trip-pana.png"
                              alt="Card image">
                         <div class="card-body">
-                            <h5 class="card-title">{{ tour.name }}</h5>
+                            <h5 class="card-title">See all Places</h5>
                             <p class="card-text fs-sm"></p>
                         </div>
                     </div>
-                {% endfor %}
+                    {% for tour in tourplans %}
+                        <div class="card m-2">
+                            <img class="card-img-top m-auto" style="height: 240px;" src="{{ tour.cover_photo.url }}"
+                                 alt="Card image">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ tour.name }}</h5>
+                                <p class="card-text fs-sm"></p>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
             </div>
+
+
             <!-- Hotel -->
-            <h2 class="p-3 mt-5">Popular Hotels</h2>
-            <div class="card-group gap-3">
-                {% for hotel in hotels %}
-                    <div class="card">
-                        <img class="card-img-top" style="height: 240px;" src="{{ hotel.image.url }}" alt="Card image">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ hotel.name }}</h5>
-                            <p class="card-text fs-sm"></p>
+            {% if hotels %}
+                <div class="pb-4 mb-4">
+                    <h2 class="">Popular Hotels</h2>
+                    <div class="card-group gap-3">
+                        <div class="card m-2">
+                            <img class="card-img-top m-auto" style="height: 240px;"
+                                 src="https://cdn.discordapp.com/attachments/1119601743538425866/1129005594381127801/hotel.png"
+                                 alt="Card image">
+                            <div class="card-body">
+                                <h5 class="card-title">See all Places</h5>
+                                <p class="card-text fs-sm"></p>
+                            </div>
                         </div>
-                        <div class="card-footer border-top-0 pt-0">
-                            <a class="btn btn-sm btn-primary" href="#">Go somewhere</a>
-                        </div>
+                        {% for hotel in hotels %}
+                            <div class="card">
+                                <img class="card-img-top" style="height: 240px;" src="{{ hotel.image.url }}"
+                                     alt="Card image">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ hotel.name }}</h5>
+                                    <p class="card-text fs-sm"></p>
+                                </div>
+                                <div class="card-footer border-top-0 pt-0">
+                                    <a class="btn btn-sm btn-primary" href="#">Go somewhere</a>
+                                </div>
+                            </div>
+                        {% endfor %}
                     </div>
-                {% endfor %}
-            </div>
+                </div>
+            {% endif %}
+
+
             <!-- Restaurant -->
-            <div class="card-group gap-3">
-                {% for restaurant in restaurants %}
-                    <div class="card">
-                        <img class="card-img-top" src="{{ restaurant.image.url }}" alt="Card image">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ restaurant.name }}</h5>
-                            <p class="card-text fs-sm"></p>
+            {% if restaurants %}
+                <div class="pb-4 mb-4">
+                    <h2>Popular Restaurants</h2>
+                    <div class="card-group gap-3 pb-4 mb-2">
+                        <div class="card m-2">
+                            <img class="card-img-top m-auto" style="height: 240px;"
+                                 src="https://cdn.discordapp.com/attachments/1119601743538425866/1129005536084492449/restaurant.png"
+                                 alt="Card image">
+                            <div class="card-body">
+                                <h5 class="card-title">See all Places</h5>
+                                <p class="card-text fs-sm"></p>
+                            </div>
                         </div>
-                        <div class="card-footer border-top-0 pt-0">
-                            <a class="btn btn-sm btn-primary" href="#">Go somewhere</a>
-                        </div>
+                        {% for restaurant in restaurants %}
+                            <div class="card">
+                                <img class="card-img-top" src="{{ restaurant.image.url }}" alt="Card image"
+                                     style="height: 240px;">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ restaurant.name }}</h5>
+                                    <p class="card-text fs-sm"></p>
+                                </div>
+                                <div class="card-footer border-top-0 pt-0">
+                                    <a class="btn btn-sm btn-primary" href="#">Go somewhere</a>
+                                </div>
+                            </div>
+                        {% endfor %}
                     </div>
-                {% endfor %}
-            </div>
-            {% include 'footer.html' %}
+                </div>
+            {% endif %}
+
         </div>
     </main>
+    {% include 'footer.html' %}
 {% endblock %}

@@ -4,11 +4,11 @@ from .address import Location
 
 class Restaurant(models.Model):
     RATING_CHOICES = [
-        (1, ''),
-        (2, ''),
-        (3, ''),
-        (4, ''),
-        (5, ''),
+        (1, 'One'),
+        (2, 'Two'),
+        (3, 'Three'),
+        (4, 'Four'),
+        (5, 'Five'),
     ]
     name = models.CharField(max_length=120)
     place = models.CharField(max_length=120)

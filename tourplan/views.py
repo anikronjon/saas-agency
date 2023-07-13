@@ -21,9 +21,9 @@ def tourplan_view(request, slug=None):
     tourplans = TourPlace.objects.all()
     if slug:
         tourplan = TourPlace.objects.filter(slug=slug)
-        return render(request, 'tourplan/tourplan_list.html', {'tourplan': tourplan})
+        return render(request, 'tourplan/list/tourplan_list.html', {'tourplan': tourplan})
     else:
-        return render(request, 'tourplan/tourplan_list.html', {'tourplans': tourplans})
+        return render(request, 'tourplan/list/tourplan_list.html', {'tourplans': tourplans})
 
 
 def hotel_view(request):
@@ -33,12 +33,12 @@ def hotel_view(request):
 
 def agency_view(request):
     agencies = Agency.objects.all()
-    return render(request, 'tourplan/agency.html', {'agencies': agencies})
+    return render(request, 'tourplan/list/agency_list.html', {'agencies': agencies})
 
 
 def restaurant_view(request):
     restaurants = Restaurant.objects.all()
-    return render(request, 'tourplan/restaurant.html', {'restaurants': restaurants})
+    return render(request, 'tourplan/list/restaurant_list.html', {'restaurants': restaurants})
 
 
 def about_view(request):
