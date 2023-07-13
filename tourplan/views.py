@@ -41,4 +41,5 @@ def restaurant_view(request):
     return render(request, 'tourplan/restaurant.html', {'restaurants': restaurants})
 
 
-
+def about_view(request):
+    return render(request, 'tourplan/about.html')
