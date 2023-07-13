@@ -1,0 +1,47 @@
+{% extends '_base.html' %}
+
+
+{% block container %}
+    {% if not user.is_authenticated %}
+        {% include 'navbar.html' %}
+    {% else %}
+        {% include 'navbar_in_logged_state.html' %}
+    {% endif %}
+
+    <main class="page-wrapper container">
+        <!-- Breadcrumb -->
+        <nav class="mt-lg-4 mb-4" aria-label="breadcrumb">
+            <ol class="breadcrumb mb-0 pt-5">
+                <li class="breadcrumb-item">
+                    <a href="{% url 'tourplan:home_page' %}"><i class="bx bx-home-alt fs-lg me-1"></i>Home</a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">Blog List</li>
+            </ol>
+        </nav>
+
+        <!-- Blog grid -->
+        <div class="row row-cols-lg-3 row-cols-sm-2 row-cols-1 gy-md-4 gy-2">
+            {% for tour in tourplans %}
+                <!-- Item -->
+                <div class="col pb-3">
+                    <article class="card border-0 shadow-sm h-100">
+                        <div class="position-relative">
+                            <img src="{{ tour.cover_photo.url }}" class="card-img-top" alt="Image">
+                        </div>
+                        <div class="card-body pb-4">
+                            <div class="d-flex align-items-center justify-content-between mb-3">
+                                <a href=""
+                                   class="badge fs-sm text-nav bg-secondary text-decoration-none">{{ tour.category.name }}</a>
+                                <span class="fs-sm text-muted">{{ tour.created_at }}</span>
+                            </div>
+                            <h3 class="h5 mb-0">
+                                <a href="blog-single.html">{{ tour.name }}</a>
+                            </h3>
+                        </div>
+                    </article>
+                </div>
+            {% endfor %}
+        </div>
+    </main>
+    {% include 'footer.html' %}
+{% endblock %}

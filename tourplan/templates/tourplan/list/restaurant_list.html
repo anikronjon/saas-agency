@@ -1,0 +1,25 @@
+{% extends '_base.html' %}
+
+
+{% block container %}
+    {% if not user.is_authenticated %}
+        {% include 'navbar.html' %}
+    {% else %}
+        {% include 'navbar_in_logged_state.html' %}
+    {% endif %}
+
+    <main class="page-wrapper">
+        <!-- Breadcrumb -->
+        <nav class="container mt-lg-4" aria-label="breadcrumb">
+            <ol class="breadcrumb mb-0 pt-5">
+                <li class="breadcrumb-item">
+                    <a href="{% url 'tourplan:home_page' %}"><i class="bx bx-home-alt fs-lg me-1"></i>Home</a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">Blog List</li>
+            </ol>
+        </nav>
+
+
+    </main>
+
+{% endblock %}

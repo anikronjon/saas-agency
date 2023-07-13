@@ -9,6 +9,8 @@
         {% else %}
             {% include 'navbar_in_logged_state.html' %}
         {% endif %}
+
+
         <div class="container">
             <!-- Hero Widget -->
             <!-- Tourist places -->
@@ -16,11 +18,15 @@
                 <h2 class="">Popular Tourist places</h2>
                 <div class="card-group">
                     <div class="card m-2">
-                        <img class="card-img-top m-auto" style="height: 240px;"
-                             src="https://cdn.discordapp.com/attachments/1119601743538425866/1129008897903034438/Trip-pana.png"
-                             alt="Card image">
+                        <a href="{% url 'tourplan:tourplan_list_page' %}">
+                            <img class="card-img-top m-auto" style="height: 240px;"
+                                 src="https://cdn.discordapp.com/attachments/1119601743538425866/1129008897903034438/Trip-pana.png"
+                                 alt="Card image">
+                        </a>
                         <div class="card-body">
-                            <h5 class="card-title">See all Places</h5>
+                            <a href="{% url 'tourplan:tourplan_list_page' %}">
+                                <h5 class="card-title">See all Places</h5>
+                            </a>
                             <p class="card-text fs-sm"></p>
                         </div>
                     </div>
@@ -44,11 +50,15 @@
                     <h2 class="">Popular Hotels</h2>
                     <div class="card-group gap-3">
                         <div class="card m-2">
-                            <img class="card-img-top m-auto" style="height: 240px;"
-                                 src="https://cdn.discordapp.com/attachments/1119601743538425866/1129005594381127801/hotel.png"
-                                 alt="Card image">
+                            <a href="{% url 'tourplan:hotel_list_page' %}">
+                                <img class="card-img-top m-auto" style="height: 240px;"
+                                     src="https://cdn.discordapp.com/attachments/1119601743538425866/1129005594381127801/hotel.png"
+                                     alt="Card image">
+                            </a>
                             <div class="card-body">
-                                <h5 class="card-title">See all Places</h5>
+                                <a href="{% url 'tourplan:hotel_list_page' %}">
+                                    <h5 class="card-title">See all Places</h5>
+                                </a>
                                 <p class="card-text fs-sm"></p>
                             </div>
                         </div>
@@ -76,11 +86,15 @@
                     <h2>Popular Restaurants</h2>
                     <div class="card-group gap-3 pb-4 mb-2">
                         <div class="card m-2">
-                            <img class="card-img-top m-auto" style="height: 240px;"
-                                 src="https://cdn.discordapp.com/attachments/1119601743538425866/1129005536084492449/restaurant.png"
-                                 alt="Card image">
+                            <a href="{% url 'tourplan:restaurant_list_page' %}">
+                                <img class="card-img-top m-auto" style="height: 240px;"
+                                     src="https://cdn.discordapp.com/attachments/1119601743538425866/1129005536084492449/restaurant.png"
+                                     alt="Card image">
+                            </a>
                             <div class="card-body">
-                                <h5 class="card-title">See all Places</h5>
+                                <a href="{% url 'tourplan:restaurant_list_page' %}">
+                                    <h5 class="card-title">See all Places</h5>
+                                </a>
                                 <p class="card-text fs-sm"></p>
                             </div>
                         </div>
@@ -91,9 +105,6 @@
                                 <div class="card-body">
                                     <h5 class="card-title">{{ restaurant.name }}</h5>
                                     <p class="card-text fs-sm"></p>
-                                </div>
-                                <div class="card-footer border-top-0 pt-0">
-                                    <a class="btn btn-sm btn-primary" href="#">Go somewhere</a>
                                 </div>
                             </div>
                         {% endfor %}

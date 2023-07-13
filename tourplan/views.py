@@ -28,7 +28,7 @@ def tourplan_view(request, slug=None):
 
 def hotel_view(request):
     hotels = Hotel.objects.all()
-    return render(request, 'tourplan/home.html', {'hotels': hotels})
+    return render(request, 'tourplan/list/hotel_list.html', {'hotels': hotels})
 
 
 def agency_view(request):
