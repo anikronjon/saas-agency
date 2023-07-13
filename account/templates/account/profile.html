@@ -7,29 +7,17 @@
     {% else %}
         {% include 'navbar_in_logged_state.html' %}
     {% endif %}
-    <script>
-        document.getElementById('upload-button').addEventListener('click', function () {
-            document.getElementById('picture-input').click();
-        });
 
-        document.getElementById('picture-input').addEventListener('change', function () {
-            document.getElementById('submit-button').click();
-        });
-    </script>
-    <section class="container mt-4 pt-lg-2 pb-3">
-        <div class="d-table position-relative mx-auto mt-2 mt-lg-4 pt-5 mb-3">
-            <img src="{{ profile.picture.url }}" alt="profile-pic" class="d-block rounded-circle bg-dark">
-            <form method="post" enctype="multipart/form-data">
-                {% csrf_token %}
-                <input type="file" name="picture" class="">
-                <button type="submit"
-                        id="submit-button"
-                        class="btn btn-icon btn-light bg-white btn-sm border rounded-circle shadow-sm position-absolute bottom-0 end-0 mt-4"
-                        data-bs-toggle="tooltip" data-bs-placement="bottom" aria-label="Change picture"
-                        data-bs-original-title="Change picture">
-                    <i class="bx bx-refresh"></i>
-                </button>
-            </form>
+    <div class="container mt-5">
+        <div class="row">
+            <h2>Change Information</h2>
+            <div class="col-sm-6 mb-5">
+                <label class="form-label fs-base">user name</label>
+                <input class="form-control" type="text" value="{{ user.username }}" disabled>
+                <br>
+                <label class="form-label fs-base">user email</label>
+                <input class="form-control" type="email" value="{{ user.email }}" disabled>
+            </div>
         </div>
 
         <!-- Change Password form -->
@@ -41,13 +29,8 @@
                 <div class="col-sm-6 mb-4">
                     <label for="cp" class="form-label fs-base">Current password</label>
                     <div class="password-toggle">
-                        <input type="password" name="old_password" id="cp" class="form-control form-control-lg"
-                               required>
-                        <label class="password-toggle-btn" aria-label="Show/hide password">
-                            <input class="password-toggle-check" type="checkbox">
-                            <span class="password-toggle-indicator"></span>
-                        </label>
-                        <div class="invalid-tooltip position-absolute top-100 start-0">Incorrect password!</div>
+                        <input type="password" name="old_password" id="cp" class="form-control"
+                               placeholder="Enter old password.." required>
                     </div>
                 </div>
             </div>
@@ -55,25 +38,17 @@
                 <div class="col-sm-6 mb-4">
                     <label for="np" class="form-label fs-base">New password</label>
                     <div class="password-toggle">
-                        <input type="password" name="new_password1" id="np" class="form-control form-control-lg"
+                        <input type="password" name="new_password1" id="np" class="form-control"
+                               placeholder="Enter new password.."
                                required="">
-                        <label class="password-toggle-btn" aria-label="Show/hide password">
-                            <input class="password-toggle-check" type="checkbox">
-                            <span class="password-toggle-indicator"></span>
-                        </label>
-                        <div class="invalid-tooltip position-absolute top-100 start-0">Incorrect password!</div>
                     </div>
                 </div>
                 <div class="col-sm-6 mb-4">
                     <label for="cnp" class="form-label fs-base">Confirm new password</label>
                     <div class="password-toggle">
-                        <input type="password" name="new_password2" id="cnp" class="form-control form-control-lg"
+                        <input type="password" name="new_password2" id="cnp" class="form-control"
+                               placeholder="Re-enter new password.."
                                required>
-                        <label class="password-toggle-btn" aria-label="Show/hide password">
-                            <input class="password-toggle-check" type="checkbox">
-                            <span class="password-toggle-indicator"></span>
-                        </label>
-                        <div class="invalid-tooltip position-absolute top-100 start-0">Incorrect password!</div>
                     </div>
                 </div>
             </div>
@@ -82,5 +57,5 @@
                 <button type="submit" class="btn btn-primary">Save changes</button>
             </div>
         </form>
-    </section>
+    </div>
 {% endblock %}

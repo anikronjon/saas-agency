@@ -5,7 +5,7 @@ from django.http import HttpResponse
 from django.contrib.auth import login, logout
 from django.contrib import messages
 from .models import Profile
-from .forms import SignUpForm
+from .forms import SignUpForm, ProfilePictureForm
 from .custom_auth_backend import CustomAuthenticationBackend
 
 
@@ -68,5 +68,3 @@ def profile_view(request):
 def signout_view(request):
     logout(request)
     return redirect('account:signin')
-
-
