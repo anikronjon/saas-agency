@@ -2,7 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import PasswordChangeForm
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from django.contrib.auth import login
+from django.contrib.auth import login, logout
 from django.contrib import messages
 from .models import Profile
 from .forms import SignUpForm
@@ -63,4 +63,10 @@ def profile_view(request):
         password_form = PasswordChangeForm(user=user)
 
     return render(request, 'account/profile.html', {'user': user, 'profile': profile, 'password_form': password_form})
+
+
+def signout_view(request):
+    logout(request)
+    return redirect('account:signin')
+
 
