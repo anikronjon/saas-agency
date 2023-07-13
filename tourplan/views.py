@@ -43,3 +43,7 @@ def restaurant_view(request):
 
 def about_view(request):
     return render(request, 'tourplan/about.html')
+
+
+def contact_view(request):
+    return render(request, 'tourplan/contact.html')

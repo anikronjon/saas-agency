@@ -1,0 +1,100 @@
+{% extends '_base.html' %}
+
+
+{% block container %}
+    {% if not user.is_authenticated %}
+        {% include 'navbar.html' %}
+    {% else %}
+        {% include 'navbar_in_logged_state.html' %}
+    {% endif %}
+    <!-- Hero -->
+    <section class="dark-mode position-relative" style="background-color: #151922;">
+
+        <!-- Content -->
+        <div class="container position-relative zindex-2 pt-5 pb-2 pb-md-0">
+
+            <!-- Breadcrumb -->
+            <nav class="pt-lg-4" aria-label="breadcrumb">
+                <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item">
+                        <a href="{% url 'tourplan:home_page' %}"><i class="bx bx-home-alt fs-lg me-1"></i>Home</a>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page">Contacts</li>
+                </ol>
+            </nav>
+
+            <div class="row justify-content-center pt-3 mt-3">
+                <div class="col-xl-6 col-lg-7 col-md-8 col-sm-10 text-center">
+                    <h1 class="mb-4">Get in Touch</h1>
+                    <p class="fs-lg pb-3 mb-3">Have a project in mind? To request a quote contact us directly or fill
+                        out the form and let us know how we can help.</p>
+                    <div class="d-flex justify-content-center">
+                        <a href="https://www.facebook.com/anikronjon.swe/"
+                           class="btn btn-icon btn-secondary btn-facebook rounded-circle mx-2">
+                            <i class="bx bxl-facebook"></i>
+                        </a>
+                        <a href="https://github.com/anikronjon"
+                           class="btn btn-icon btn-secondary btn-instagram rounded-circle mx-2">
+                            <i class="bx bxl-github"></i>
+                        </a>
+                        <a href="https://bd.linkedin.com/in/anikronjon"
+                           class="btn btn-icon btn-secondary btn-google rounded-circle mx-2">
+                            <i class="bx bxl-linkedin"></i>
+                        </a>
+                        <a href="https://developers.google.com/profile/u/anikronjon"
+                           class="btn btn-icon btn-secondary btn-google rounded-circle mx-2">
+                            <i class="bx bxl-google"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom shape -->
+        <div class="d-flex position-absolute top-100 start-0 w-100 overflow-hidden mt-n5" style="color: #151922;">
+            <div class="position-relative start-50 translate-middle-x flex-shrink-0 mt-n5 mt-md-n3 mt-lg-n1"
+                 style="width: 3788px;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="3788" height="144" viewBox="0 0 3788 144">
+                    <path fill="currentColor" d="M0,0h3788.7c-525,90.2-1181.7,143.9-1894.3,143.9S525,90.2,0,0z"/>
+                </svg>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Email + Phone -->
+    <section class="container py-5 my-md-2 my-lg-4 my-xl-5">
+        <div class="row justify-content-center pt-5 pb-1 pb-sm-2 pb-md-3">
+            <div class="col-xxl-8 col-xl-9 col-lg-10 pt-sm-2 pt-md-5">
+                <div class="d-sm-flex">
+                    <div class="d-flex flex-column w-sm-50 border-0 bg-transparent text-center px-sm-1 px-md-5 pb-3 pb-sm-0 mb-4 mb-sm-0">
+                        <div class="card-body p-0">
+                            <div class="d-inline-block bg-secondary text-primary rounded-circle fs-3 lh-1 p-3 mb-3">
+                                <i class="bx bx-envelope"></i>
+                            </div>
+                            <p class="pb-2 pb-sm-3 mb-3">Please feel free to drop us a line. We will respond as soon as
+                                possible.</p>
+                        </div>
+                        <div class="card-footer border-0 p-0">
+                            <a href="mailto:anikronjon.swe@gmail.com" class="btn btn-lg btn-primary">Send email</a>
+                        </div>
+                    </div>
+                    <div class="vr text-border d-none d-sm-inline-block m-4"></div>
+                    <div class="card w-sm-50 border-0 bg-transparent text-center px-sm-1 px-md-5">
+                        <div class="card-body p-0">
+                            <div class="d-inline-block bg-secondary text-primary rounded-circle fs-3 lh-1 p-3 mb-3">
+                                <i class="bx bx-phone-call"></i>
+                            </div>
+                            <p class="pb-2 pb-sm-3 mb-3">If you need immediate assistance feel free to call us any
+                                time.</p>
+                        </div>
+                        <div class="card-footer border-0 p-0">
+                            <a href="tel:01307191873" class="btn btn-lg btn-primary">Call us</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
