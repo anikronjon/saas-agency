@@ -12,4 +12,6 @@ urlpatterns = [
     path('restaurant/', views.restaurant_view, name='restaurant_list_page'),
     path('about/', views.about_view, name='about_page'),
     path('contact/', views.contact_view, name='contact_page'),
+
+    path('map/', views.google_map, name='google_map_page')
 ]

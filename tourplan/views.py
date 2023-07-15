@@ -1,3 +1,4 @@
+from django.db.models import Q
 from django.shortcuts import render, redirect
 from tourplan.models import *
 
@@ -47,3 +48,9 @@ def about_view(request):
 
 def contact_view(request):
     return render(request, 'tourplan/contact.html')
+
+
+def google_map(request):
+    tourplans = TourPlace.objects.all()
+    return render(request, 'tourplan/tourplan.html', {'tourplans': tourplans})
+
