@@ -1,0 +1,29 @@
+{% extends '_base.html' %}
+
+{% block title %}{% endblock %}
+
+{% block container %}
+    <main class="page-wrapper">
+        {% if not user.is_authenticated %}
+            {% include 'navbar.html' %}
+        {% else %}
+            {% include 'navbar_in_logged_state.html' %}
+        {% endif %}
+        <div class="container mt-5">
+            <form method="post">
+                <div class="mb-3">
+                    <label class="form-label fs-base" for="input-lg">Group name</label>
+                    <input class="form-control form-control-lg" id="input-lg" type="text"
+                           placeholder="Large input placeholder">
+                </div>
+                <div class="mb-3">
+                    <input class="btn btn-primary" type="submit" value="Send">
+                </div>
+            </form>
+        </div>
+        <script>
+            var ws = new WebSocket('ws://127.0.0.1:8000/ws/')
+
+        </script>
+    </main>
+{% endblock %}

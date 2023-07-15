@@ -1,0 +1,44 @@
+{% extends '_base.html' %}
+
+{% block title %}{% endblock %}
+
+{% block container %}
+    <main class="page-wrapper">
+        {% if not user.is_authenticated %}
+            {% include 'navbar.html' %}
+        {% else %}
+            {% include 'navbar_in_logged_state.html' %}
+        {% endif %}
+
+        <!-- Content -->
+        <div class="container position-relative zindex-2 py-4">
+            <div class="row">
+                <div class="col-lg-5 d-flex flex-column pt-lg-4 pt-xl-5">
+                    <h5 class="my-2">Welcome!</h5>
+                    <h1 class="display-3 mb-4">Use <span class="text-primary">Real Time Chat</span> with No Limits</h1>
+                    <p class="fs-lg mb-5">Enjoy our chat system. We don't store any data from users. And the data will
+                        be lost after a certain period of time.</p>
+                    <!-- Mobile form -->
+                    <div class="d-flex align-items-center mt-auto mb-3 mb-lg-0 pb-4 pb-lg-0 pb-xl-5">
+                        <span class="fs-sm"><span class="text-primary fw-semibold">10K+</span> students are already with us</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chat Group -->
+            <form method="post">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label class="form-label fs-base" for="input-lg">Group name</label>
+                    <input class="form-control" id="input-lg" type="text" name="group_name"
+                           placeholder="Enter Group name...">
+                </div>
+                <div class="mb-3">
+                    <input class="btn btn-primary" type="submit" value="Submit">
+                </div>
+            </form>
+
+        </div>
+    </main>
+    {% include 'footer.html' %}
+{% endblock %}
