@@ -1,6 +1,8 @@
 from pathlib import Path
 from django.core.management.utils import get_random_secret_key
 
+
+# AVNS_ByWfH2pCFQwEinYrMgD
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -17,6 +19,7 @@ ALLOWED_HOSTS = []
 
 # Application definition
 INSTALLED_APPS = [
+    'daphne',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -24,6 +27,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'account.apps.AccountConfig',
+    'blog.apps.BlogConfig',
+    'tourplan.apps.TourplanConfig',
+    'game.apps.GameConfig',
+    'chat.apps.ChatConfig',
 ]
 
 AUTH_USER_MODEL = 'account.User'
@@ -58,13 +65,19 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'core.wsgi.application'
-
+ASGI_APPLICATION = 'core.asgi.application'
 
 # Database
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
+        # 'ENGINE': 'django.db.backends.postgresql',
+        # 'NAME': config('DB_NAME', default='defaultdb'),
+        # 'USER': config('DB_USER', default='doadmin'),
+        # 'PASSWORD': config('DB_PASSWORD'),
+        # 'HOST': config('DB_HOST', default='db-postgresql-nyc1-95564-do-user-11919912-0.b.db.ondigitalocean.com'),
+        # 'PORT': config('DB_PORT', default=25060, cast=int),
     }
 }
 
@@ -99,10 +112,16 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = 'static/'
 STATIC_ROOT = BASE_DIR / 'static'
-
+STATICFILES_DIRS = [BASE_DIR / 'staticfile']
 MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
 
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels.layers.InMemoryChannelLayer'
+    }
+}

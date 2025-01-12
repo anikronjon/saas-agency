@@ -1,0 +1,63 @@
+{% extends '_base.html' %}
+
+
+{% block container %}
+    {% if not user.is_authenticated %}
+        {% include 'navbar.html' %}
+    {% else %}
+        {% include 'navbar_in_logged_state.html' %}
+    {% endif %}
+
+    <main class="page-wrapper container">
+        <!-- Breadcrumb -->
+        <nav class="mt-lg-4 mb-4" aria-label="breadcrumb">
+            <ol class="breadcrumb mb-0 pt-5">
+                <li class="breadcrumb-item">
+                    <a href="{% url 'tourplan:home_page' %}"><i class="bx bx-home-alt fs-lg me-1"></i>Home</a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">Hotel List</li>
+            </ol>
+        </nav>
+
+
+        <!-- Page content -->
+        <section class="container mt-4 mb-lg-5 pt-lg-2 pb-5">
+            {% for hotel in hotels %}
+                <!-- Item -->
+                <article class="card border-0 shadow-sm overflow-hidden mb-4">
+                    <div class="row g-0">
+                        <div class="col-sm-4 position-relative bg-position-center bg-repeat-0 bg-size-cover"
+                             style="background-image: url({{ hotel.image.url }}); min-height: 15rem;">
+                        </div>
+                        <div class="col-sm-8">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center mb-3">
+                                    <a
+                                       class="badge fs-sm text-nav bg-secondary text-decoration-none">Find Best Hotel</a>
+                                    <span class="fs-sm text-muted border-start ps-3 ms-3">{{ hotel.created_at }}</span>
+                                </div>
+                                <h3 class="h4">
+                                    <a>{{ hotel.name }}</a>
+                                </h3>
+                                <p>{{ hotel.details }}</p>
+                                <hr class="my-4">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <a href="{{ hotel.weblink }}" class="fs-sm text-decoration-none">
+                                        Go To: {{ hotel.weblink }}
+                                    </a>
+                                    <div class="d-flex align-items-center text-muted">
+                                        <div class="d-flex align-items-center me-3">
+                                            <i class="bx bx-star fs-lg me-1"></i>
+                                            <span class="fs-sm">rating {{ hotel.rating }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            {% endfor %}
+        </section>
+    </main>
+    {% include 'footer.html' %}
+{% endblock %}

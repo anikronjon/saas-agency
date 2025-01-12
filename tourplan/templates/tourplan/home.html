@@ -1,0 +1,118 @@
+{% extends '_base.html' %}
+
+{% block title %}{% endblock %}
+
+{% block container %}
+    <main class="page-wrapper">
+        {% if not user.is_authenticated %}
+            {% include 'navbar.html' %}
+        {% else %}
+            {% include 'navbar_in_logged_state.html' %}
+        {% endif %}
+
+
+        <div class="container">
+            <!-- Hero Widget -->
+            <!-- Tourist places -->
+            <div class="pb-4 mb-4 mt-5">
+                <h2 class="">Popular Tourist places</h2>
+                <div class="card-group">
+                    <div class="card m-2">
+                        <a href="{% url 'tourplan:tourplan_list_page' %}">
+                            <img class="card-img-top m-auto" style="height: 240px;"
+                                 src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1b/ed/95/07/limak-eurasia-luxury.jpg?w=700&h=-1&s=1"
+                                 alt="Card image">
+                        </a>
+                        <div class="card-body">
+                            <a href="{% url 'tourplan:tourplan_list_page' %}">
+                                <h5 class="card-title">See all Places</h5>
+                            </a>
+                            <p class="card-text fs-sm"></p>
+                        </div>
+                    </div>
+                    {% for tour in tourplans %}
+                        <div class="card m-2">
+                            <img class="card-img-top m-auto" style="height: 240px;" src="{{ tour.cover_photo.url }}"
+                                 alt="Card image">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ tour.name }}</h5>
+                                <p class="card-text fs-sm"></p>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+
+            <!-- Hotel -->
+            {% if hotels %}
+                <div class="pb-4 mb-4">
+                    <h2 class="">Popular Hotels</h2>
+                    <div class="card-group gap-3">
+                        <div class="card m-2">
+                            <a href="{% url 'tourplan:hotel_list_page' %}">
+                                <img class="card-img-top m-auto" style="height: 240px;"
+                                     src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1b/ed/95/07/limak-eurasia-luxury.jpg?w=700&h=-1&s=1"
+                                     alt="Card image">
+                            </a>
+                            <div class="card-body">
+                                <a href="{% url 'tourplan:hotel_list_page' %}">
+                                    <h5 class="card-title">See all Places</h5>
+                                </a>
+                                <p class="card-text fs-sm"></p>
+                            </div>
+                        </div>
+                        {% for hotel in hotels %}
+                            <div class="card">
+                                <img class="card-img-top" style="height: 240px;" src="{{ hotel.image.url }}"
+                                     alt="Card image">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ hotel.name }}</h5>
+                                    <p class="card-text fs-sm"></p>
+                                </div>
+                                <div class="card-footer border-top-0 pt-0">
+                                    <a class="btn btn-sm btn-primary" href="#">Go somewhere</a>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endif %}
+
+
+            <!-- Restaurant -->
+            {% if restaurants %}
+                <div class="pb-4 mb-4">
+                    <h2>Popular Restaurants</h2>
+                    <div class="card-group gap-3 pb-4 mb-2">
+                        <div class="card m-2">
+                            <a href="{% url 'tourplan:restaurant_list_page' %}">
+                                <img class="card-img-top m-auto" style="height: 240px;"
+                                     src="https://www.visitphilly.com/wp-content/uploads/2023/08/Enswell-Interior-by-J-Varney-2200x1237px.jpg"
+                                     alt="Card image">
+                            </a>
+                            <div class="card-body">
+                                <a href="{% url 'tourplan:restaurant_list_page' %}">
+                                    <h5 class="card-title">See all Places</h5>
+                                </a>
+                                <p class="card-text fs-sm"></p>
+                            </div>
+                        </div>
+                        {% for restaurant in restaurants %}
+                            <div class="card">
+                                <img class="card-img-top" src="{{ restaurant.image.url }}" alt="Card image"
+                                     style="height: 240px;">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ restaurant.name }}</h5>
+                                    <p class="card-text fs-sm"></p>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endif %}
+
+        </div>
+    </main>
+    {% include 'footer.html' %}
+{% endblock %}

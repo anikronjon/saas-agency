@@ -1,0 +1,51 @@
+{% extends '_base.html' %}
+
+{% block title %}{% endblock %}
+
+{% block container %}
+    <main class="page-wrapper">
+        {% if not user.is_authenticated %}
+            {% include 'navbar.html' %}
+        {% else %}
+            {% include 'navbar_in_logged_state.html' %}
+        {% endif %}
+        <div class="container mt-5">
+            <div class="mb-3">
+                <label for="chat-area" class="form-label fs-base">Chats ....</label>
+                <textarea id="chat-area" cols="30" rows="10" class="form-control">
+
+                </textarea>
+            </div>
+            <div class="mb-3">
+                <label class="form-label fs-base" for="message-input">Write your message</label>
+                <input class="form-control" id="message-input" type="text"
+                       placeholder="Large input placeholder">
+            </div>
+            <div class="mb-3">
+                <button class="btn btn-primary" onclick="sendMessage()">Send</button>
+            </div>
+        </div>
+        <script>
+            var group_name = "{{ group_name }}";
+            var ws = new WebSocket('ws://' + window.location.host + '/ws/' + group_name + '/')
+
+            ws.onopen = function (){
+                console.log('Websocket Connect')
+            }
+
+            ws.onmessage = function (event) {
+                var message = JSON.parse(event.data);
+                var textarea = document.getElementById('chat-area');
+                textarea.value += message + '\n';
+            }
+
+            function sendMessage(){
+                var input = document.getElementById('message-input');
+                var message = input.value;
+                ws.send(message);
+                input.value = '';
+            }
+
+        </script>
+    </main>
+{% endblock %}

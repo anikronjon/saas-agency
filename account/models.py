@@ -12,7 +12,7 @@ class User(AbstractUser):
     
 
 class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
     picture = models.ImageField(upload_to='images/profile')
 
     def __str__(self):

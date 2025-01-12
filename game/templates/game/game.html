@@ -1,0 +1,35 @@
+{% extends '_base.html' %}
+
+{% block title %}{% endblock %}
+
+{% block container %}
+
+    <main class="page-wrapper">
+        {% if not user.is_authenticated %}
+            {% include 'navbar.html' %}
+        {% else %}
+            {% include 'navbar_in_logged_state.html' %}
+        {% endif %}
+
+        <div class="container mt-5">
+            <h2>Pass your leisure time with playing games and Earn Reward.</h2>
+            <div class="py-4 my-5">
+                <h2 class="btn btn-info">Play Solitaire <span class="badge bg-light ms-2">game 1</span></h2>
+                <script src="https://cdn.htmlgames.com/embed.js?game=ClassicGinRummy&amp;bgcolor=white"></script>
+            </div>
+            <br>
+            <div class="py-4 my-5">
+                <h2 class="btn btn-info">Play Puzzle<span class="badge bg-light ms-2">game 2</span></h2>
+                <script src="https://cdn.htmlgames.com/embed.js?game=SlidePuzzle&amp;bgcolor=white"></script>
+            </div>
+            <br>
+            <div class="py-4 my-5">
+                <h2 class="btn btn-info">Play Pool<span class="badge bg-light ms-2">game 3</span></h2>
+                <script src="https://cdn.htmlgames.com/embed.js?game=BubbleBilliards&amp;bgcolor=white"></script>
+            </div>
+
+        </div>
+
+
+    </main>
+{% endblock %}

@@ -2,10 +2,10 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import PasswordChangeForm
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from django.contrib.auth import login
+from django.contrib.auth import login, logout
 from django.contrib import messages
 from .models import Profile
-from .forms import SignUpForm
+from .forms import SignUpForm, ProfilePictureForm
 from .custom_auth_backend import CustomAuthenticationBackend
 
 
@@ -15,7 +15,7 @@ def signup_view(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
-            return HttpResponse('You signup successfully.')
+            return redirect('account:signin')
     else:
         form = SignUpForm()
     return render(request, 'account/signup.html', {'form': form})
@@ -63,5 +63,8 @@ def profile_view(request):
         password_form = PasswordChangeForm(user=user)
 
     return render(request, 'account/profile.html', {'user': user, 'profile': profile, 'password_form': password_form})
-    
-# change done 
+  
+
+def signout_view(request):
+    logout(request)
+    return redirect('account:signin')
