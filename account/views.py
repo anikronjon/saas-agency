@@ -63,7 +63,7 @@ def profile_view(request):
         password_form = PasswordChangeForm(user=user)
 
     return render(request, 'account/profile.html', {'user': user, 'profile': profile, 'password_form': password_form})
-
+  
 
 def signout_view(request):
     logout(request)
