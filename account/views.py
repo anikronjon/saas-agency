@@ -64,4 +64,4 @@ def profile_view(request):
 
     return render(request, 'account/profile.html', {'user': user, 'profile': profile, 'password_form': password_form})
     
-
+# change done 
